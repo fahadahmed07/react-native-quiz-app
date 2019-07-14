@@ -41,16 +41,17 @@ export default class Home extends Component {
         if (hasCameraPermission === null) {
             return (
                 <View style={styles.container}>
-                    <Text>This application needs camera access</Text>
-                    <Text>(Please click the below button and allow the camera)</Text>
+                    <Text style={styles.text}>Application needs camera access</Text>
+                    <Text style={styles.warningText}>Please click the below button to use the camera</Text>
                     <Button
                         onPress={() => this.askPermission()}
                         title="Open Camera"
+                        color="#007bff"
                     />
                 </View>
             );
         } else if (hasCameraPermission === false) {
-            return <Text>No access to camera</Text>;
+            return <Text style={styles.errorText}>No access to camera</Text>;
         } else {
 
             return !image ? (
@@ -91,22 +92,23 @@ export default class Home extends Component {
             ) : (
                     <View style={styles.container}>{
                         faces.length > 0 ? (
-                            <View>
-                                <Text>Your are athunticated user!</Text>
-                                <Text>&amp;</Text>
-                                <Text>You can start the quiz</Text>
+                            <View style={styles.container}>
+                                <Text style={styles.text}>Now your are authenticated user!</Text>
+                                <Text style={styles.warningText}>You can proceed now.</Text>
                                 <Button
-                                    title='Start Quiz'
                                     onPress={() => navigate('Quiz')}
+                                    title='Proceed Now'
+                                    color = "#28a745"
                                 />
                             </View>
                         ) : (
-                                <View>
-                                    <Text>Your are not athunticated user!</Text>
-                                    <Text>(Please try again.)</Text>
+                                <View style={styles.container}>
+                                    <Text style={styles.text}>Your are not authenticated user!</Text>
+                                    <Text style={styles.warningText}>Please try again.</Text>
                                     <Button
-                                        title='Try again'
                                         onPress={() => this.setState({ image: null })}
+                                        title='Try again'
+                                        color = "#ffc107"
                                     />
                                 </View>
                             )
@@ -128,7 +130,20 @@ const styles = StyleSheet.create({
         flex: 1,
         flexDirection: 'row',
         justifyContent: 'space-evenly',
-        alignItems: 'center',
+        alignItems: 'flex-end',
         padding: 10,
-    }
+    },
+    text: {
+        fontSize: 22,
+        color: '#343a40',
+    },
+    warningText: {
+        fontSize: 15,
+        color: '#ffc107',
+        marginBottom: 10,
+    },
+    errorText: {
+        fontSize: 20,
+        color: '#dc3545',
+    },
 });
