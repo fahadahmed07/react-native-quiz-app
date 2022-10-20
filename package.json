@@ -9,7 +9,7 @@
   },
   "dependencies": {
     "base-64": "^0.1.0",
-    "expo": "^33.0.0",
+    "expo": "^46.0.16",
     "expo-camera": "^5.0.1",
     "expo-face-detector": "^5.0.1",
     "react": "16.8.3",
